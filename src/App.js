@@ -12,13 +12,23 @@ class App extends React.Component{
   state = {
     display: false
   }
+  
+  toysArr = []
 
   componentDidMount = () => {
-    fetch('http://localhost:3000/toys')
-    .then(response => response.json())
+    fetch("http://localhost:3000/toys", {
+    mode: 'cors',
+    headers: {
+    'Content-Type': 'application/json',
+    "Accept": 'application/json'
+    }
+  })
+    .then(resp => resp.json())
     .then(toys => toys.map(
-      toy => <ToyCard {...toy} />
-    ))
+      toy => 
+      this.toysArr.push(toy)
+      ))
+    console.log("toysArr", this.toysArr)
   }
 
   handleClick = () => {
@@ -41,7 +51,7 @@ class App extends React.Component{
         <div className="buttonContainer">
           <button onClick={this.handleClick}> Add a Toy </button>
         </div>
-        <ToyContainer/>
+        <ToyContainer toys={this.toysArr} />
       </>
     );
   }
