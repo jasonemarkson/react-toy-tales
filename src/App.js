@@ -4,12 +4,21 @@ import './App.css';
 import Header from './components/Header'
 import ToyForm from './components/ToyForm'
 import ToyContainer from './components/ToyContainer'
+import ToyCard from './components/ToyCard'
 
 
 class App extends React.Component{
 
   state = {
     display: false
+  }
+
+  componentDidMount = () => {
+    fetch('http://localhost:3000/toys')
+    .then(response => response.json())
+    .then(toys => toys.map(
+      toy => <ToyCard {...toy} />
+    ))
   }
 
   handleClick = () => {

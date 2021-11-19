@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 
 class ToyCard extends Component {
 
+  // componentDidMount = () => {
+  //     fetch('http://localhost:3000/toys')
+  //     .then(response => response.json())
+  //     .then(toys => toys.map(
+  //       toy => {debugger}
+  //       // <ToyCard toy={...toy}/>
+  //     ))
+  // }
+
   render() {
     return (
       <div className="card">
