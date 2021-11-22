@@ -4,7 +4,6 @@ import './App.css';
 import Header from './components/Header'
 import ToyForm from './components/ToyForm'
 import ToyContainer from './components/ToyContainer'
-import ToyCard from './components/ToyCard'
 
 
 class App extends React.Component{
@@ -13,8 +12,10 @@ class App extends React.Component{
     display: false
   }
   
+  // create a variable within the App class to store all the toys in an array
   toysArr = []
 
+  // create a fetch request to get all of the toys and push them to the toysArr variable
   componentDidMount = () => {
     fetch("http://localhost:3000/toys", {
     mode: 'cors',
@@ -28,7 +29,6 @@ class App extends React.Component{
       toy => 
       this.toysArr.push(toy)
       ))
-    console.log("toysArr", this.toysArr)
   }
 
   handleClick = () => {
@@ -51,6 +51,7 @@ class App extends React.Component{
         <div className="buttonContainer">
           <button onClick={this.handleClick}> Add a Toy </button>
         </div>
+        
         <ToyContainer toys={this.toysArr} />
       </>
     );
